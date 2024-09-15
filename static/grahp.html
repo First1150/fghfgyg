@@ -152,10 +152,10 @@
       "max_response": 1405,
       "cpu_utilization": 14,
       "memory_utilization": 10,
-      "error_rate": 2,
-      "conclusion": "-",
-      "problem": "-",
-      "solution": "-"
+      "error_rate": 20,
+      "conclusion": "The average and maximum response times exceed the specified requirements, and there are HTTP 404 errors indicating issues with resource availability.",
+      "problem": "The application is likely overwhelmed by the concurrent load, resulting in longer response times and failures for specific requests.",
+      "solution": "Enhance the application performance by optimizing code, increasing server capacity, and performing thorough debugging to resolve the missing resource issues."
     };
 
     // แสดงข้อมูล JSON ในหน้า HTML
@@ -169,7 +169,7 @@
     document.getElementById('solution').innerText = jsonData.solution;
 
     // Logic สำหรับ PASS หรือ FAIL
-    const avgResponseRequirement = 280; // ตัวอย่างเงื่อนไขการทดสอบ
+    const avgResponseRequirement = 100; // ตัวอย่างเงื่อนไขการทดสอบ
     const avgResponse = jsonData.avg_response;
     const isPass = avgResponse <= avgResponseRequirement;
     document.querySelector('.pass').style.display = isPass ? 'block' : 'none';
