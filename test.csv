@@ -1,0 +1,20 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,success,bytes,grpThreads,allThreads,Latency,IdleTime,Connect
+1631371942034,200,Home Page,200,OK,Thread Group 1-1,True,3054,10,50,170,0,50
+1631371942105,300,Login Page,302,Found,Thread Group 1-2,True,4078,10,50,180,0,60
+1631371942200,500,Search Page,404,Not Found,Thread Group 1-3,False,5123,10,50,210,0,70
+1631371946410,717,Checkout Page,302,Found,Thread Group 1-79,True,7960,9,23,181,0,78
+1631371946565,807,Checkout Page,200,OK,Thread Group 1-30,True,4235,4,67,179,0,44
+1631371943497,277,Login Page,200,OK,Thread Group 1-1,True,9140,5,67,186,0,84
+1631371945074,507,Checkout Page,500,Internal Server Error,Thread Group 1-28,False,1161,11,94,382,0,84
+1631371946718,357,Checkout Page,500,Internal Server Error,Thread Group 1-64,False,4099,6,52,102,0,61
+1631371945582,495,Home Page,302,Found,Thread Group 1-10,True,5573,9,90,124,0,65
+1631371945559,640,Search Page,404,Not Found,Thread Group 1-94,False,8800,3,80,623,0,24
+1631371944571,157,Login Page,404,Not Found,Thread Group 1-43,False,1777,2,52,59,0,65
+1631371944119,778,Product Page,404,Not Found,Thread Group 1-10,False,2270,15,52,315,0,31
+1631371946247,774,Search Page,404,Not Found,Thread Group 1-78,False,9127,17,59,709,0,78
+1631371946874,299,Search Page,500,Internal Server Error,Thread Group 1-78,False,5018,18,28,116,0,46
+1631371946058,940,Product Page,200,OK,Thread Group 1-81,True,4705,6,20,218,0,72
+1631371946671,627,Search Page,200,OK,Thread Group 1-50,True,7230,1,75,530,0,99
+1631371946771,260,Product Page,302,Found,Thread Group 1-71,True,8920,17,52,128,0,52
+1631371944108,449,Search Page,404,Not Found,Thread Group 1-87,False,7032,15,21,57,0,84
+1631371947150,253,Login Page,404,Not Found,Thread Group 1-75,False,4145,7,36,176,0,34

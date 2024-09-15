@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Metrics</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e2e;
+      color: #ddd;
+      margin: 0;
+      padding: 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #daa403;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgb(185, 139, 0);
+      transform: scale(1.05);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .status {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .status .pass, .status .fail {
+      display: none;
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .status .pass {
+      color: #28a745;
+    }
+
+    .status .fail {
+      color: #dc3545;
+    }
+
+    .metrics {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .metric {
+      background-color: #333;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      flex: 1 1 22%;
+      text-align: center;
+    }
+
+    .metric span {
+      display: block;
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .metric h4 {
+      margin: 0;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    #chart-container {
+      margin: 30px 0;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-button">Back to Home</a>
+  <div class="container">
+    <div class="status">
+      <div class="pass">PASS</div>
+      <div class="fail">FAIL</div>
+    </div>
+    
+    <div class="metrics">
+      <div class="metric">
+        <h4>Average Response Time</h4>
+        <span id="avg-response">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>Max Response Time</h4>
+        <span id="max-response">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>CPU Utilization</h4>
+        <span id="cpu-utilization">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>Memory Utilization</h4>
+        <span id="mem-utilization">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>Error Rate</h4>
+        <span id="err-rate">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>Conclusion</h4>
+        <span id="conclusion">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>Problem</h4>
+        <span id="problem">Loading...</span>
+      </div>
+      <div class="metric">
+        <h4>Solution</h4>
+        <span id="solution">Loading...</span>
+      </div>
+    </div>
+
+    <div id="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // ใช้ข้อมูล JSON ตัวอย่างที่มีอยู่
+    const jsonData = {
+      "avg_response": 120,
+      "max_response": 1405,
+      "cpu_utilization": 14,
+      "memory_utilization": 10,
+      "error_rate": 2,
+      "conclusion": "-",
+      "problem": "-",
+      "solution": "-"
+    };
+
+    // แสดงข้อมูล JSON ในหน้า HTML
+    document.getElementById('avg-response').innerText = jsonData.avg_response + ' ms';
+    document.getElementById('max-response').innerText = jsonData.max_response + ' ms';
+    document.getElementById('cpu-utilization').innerText = jsonData.cpu_utilization + ' %';
+    document.getElementById('mem-utilization').innerText = jsonData.memory_utilization + ' %';
+    document.getElementById('err-rate').innerText = jsonData.error_rate + ' %';
+    document.getElementById('conclusion').innerText = jsonData.conclusion;
+    document.getElementById('problem').innerText = jsonData.problem;
+    document.getElementById('solution').innerText = jsonData.solution;
+
+    // Logic สำหรับ PASS หรือ FAIL
+    const avgResponseRequirement = 280; // ตัวอย่างเงื่อนไขการทดสอบ
+    const avgResponse = jsonData.avg_response;
+    const isPass = avgResponse <= avgResponseRequirement;
+    document.querySelector('.pass').style.display = isPass ? 'block' : 'none';
+    document.querySelector('.fail').style.display = isPass ? 'none' : 'block';
+
+    // สร้างแผนภูมิ
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['AVG Response', 'Max Response', 'CPU Utilization', 'Memory Utilization', 'Error Rate'],
+        datasets: [{
+          label: 'Performance Metrics',
+          data: [jsonData.avg_response, jsonData.max_response, jsonData.cpu_utilization, jsonData.memory_utilization, jsonData.error_rate],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
